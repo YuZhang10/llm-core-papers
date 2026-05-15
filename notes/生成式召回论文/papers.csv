@@ -1,0 +1,7 @@
+title,year,citations,influential_citations,venue_or_source,publication_date,arxiv_or_doi,local_pdf
+"OneRec: Unifying Retrieve and Rank with Generative Recommender and Iterative Preference Alignment",2025,193,35,"arXiv.org","2025-02-26","https://arxiv.org/abs/2502.18965","pdfs/2025-OneRec.pdf"
+"MTGR: Industrial-Scale Generative Recommendation Framework in Meituan",2025,81,10,"CIKM 2025","2025-05-24","https://arxiv.org/abs/2505.18654","pdfs/2025-MTGR.pdf"
+"EAGER: Two-Stream Generative Recommender with Behavior-Semantic Collaboration",2024,83,8,"KDD 2024","2024-06-20","https://arxiv.org/abs/2406.14017","pdfs/2024-EAGER.pdf"
+"Sparse Meets Dense: Unified Generative Recommendations with Cascaded Sparse-Dense Representations",2025,55,8,"arXiv.org","2025-03-04","https://arxiv.org/abs/2503.02453","pdfs/2025-COBRA.pdf"
+"TokenRec: Learning to Tokenize ID for LLM-Based Generative Recommendations",2024,51,2,"TKDE / arXiv","2024-06-15","https://arxiv.org/abs/2406.10450","pdfs/2024-TokenRec.pdf"
+"Scalable and Effective Generative Information Retrieval",2024,57,,"WWW 2024","2024-05-13","https://doi.org/10.1145/3589334.3645477","pdfs/2024-RIPOR-Scalable-Effective-GenIR.pdf"

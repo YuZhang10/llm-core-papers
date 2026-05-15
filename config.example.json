@@ -1,0 +1,16 @@
+{
+  "years_back": 4,
+  "notes_file": "notes/核心论文笔记.md",
+  "quick_notes_file": "notes/quick_summaries.md",
+  "search_results_file": "notes/search_results.json",
+  "arxiv_categories": ["cs.CL", "cs.AI", "cs.LG"],
+  "excluded_keywords": ["survey", "review", "workshop", "benchmark leaderboard"],
+  "semantic_scholar_api_key": "",
+  "gpt55_model": "gpt-5.5",
+  "gpt55_base_url": "https://api.openai.com/v1/responses",
+  "gpt55_api_key_env": "OPENAI_API_KEY",
+  "max_input_chars": 28000,
+  "max_tokens": 6000,
+  "gpt55_timeout_seconds": 360,
+  "max_images": 6
+}

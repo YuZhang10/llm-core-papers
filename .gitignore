@@ -1,0 +1,30 @@
+config.json
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Local scratch/cache
+tmp_papers/
+notes/search_results.json
+notes/quick_summaries.md
+
+# Local copies of original papers and arXiv source bundles.
+# The public repo focuses on notes and selected figure assets.
+notes/*/*/*.pdf
+notes/*/pdfs/*.pdf
+notes/**/*.tar.gz
+notes/**/source/
+notes/**/**/*_source/
+
+# LaTeX build artifacts that sometimes arrive with arXiv sources.
+*.aux
+*.bbl
+*.blg
+*.dpth
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz

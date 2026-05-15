@@ -1,0 +1,95 @@
+{
+  "query": "multi-prototype retrieval for manually constructed positive item clusters; learn K latent pattern prototypes from a positive set with cluster-level supervision, max_k similarity routing, ANN union retrieval; recent Transformer / CLIP / MLLM related papers",
+  "generated_at": "2026-05-08T00:00:00",
+  "years_back": 3,
+  "papers": [
+    {
+      "arxiv_id": "2207.05515",
+      "paper_id": "2207.05515",
+      "title": "Matching Compound Prototypes for Few-Shot Action Recognition",
+      "authors": ["Yifei Huang", "Lijin Yang", "Guo Chen", "Hongjie Zhang", "Feng Lu", "Yoichi Sato"],
+      "published": "2024-04-29",
+      "year": 2024,
+      "venue": "International Journal of Computer Vision",
+      "summary": "The task of few-shot action recognition aims to recognize novel action classes using only a small number of labeled training samples. How to better describe the action in each video and how to compare the similarity between videos are two of the most critical factors in this task. Directly describing the video globally or by its individual frames cannot well represent the spatiotemporal dependencies within an action. On the other hand, naively matching the global representations of two videos is also not optimal since action can happen at different locations in a video with different speeds. In this work, we propose a novel approach that describes each video using multiple types of prototypes and then computes the video similarity with a particular matching strategy for each type of prototypes. To better model the spatiotemporal dependency, we describe the video by generating prototypes that model the multi-level spatiotemporal relations via transformers. There are a total of three types of prototypes. The first type of prototypes are trained to describe specific aspects of the action in the video e.g., the start of the action, regardless of its timestamp. These prototypes are directly matched one-to-one between two videos to compare their similarity. The second type of prototypes are the timestamp-centered prototypes that are trained to focus on specific timestamps of the video. To deal with the temporal variation of actions in a video, we apply bipartite matching to allow the matching of prototypes of different timestamps. The third type of prototypes are generated from the timestamp-centered prototypes, which regularize their temporal consistency while serving as an auxiliary summarization of the whole video. Experiments demonstrate that our proposed method achieves state-of-the-art results on multiple benchmarks.",
+      "abs_url": "https://arxiv.org/abs/2207.05515",
+      "source_url": "https://link.springer.com/article/10.1007/s11263-024-02017-7"
+    },
+    {
+      "paper_id": "10.1016/j.eswa.2025.127420",
+      "title": "Generative External Knowledge for Zero-shot Action Recognition",
+      "authors": [],
+      "published": "2025-06-15",
+      "year": 2025,
+      "venue": "Expert Systems with Applications",
+      "summary": "Zero-Shot Action Recognition (ZSAR) aims to infer new action classes without any samples of those classes. Traditional methods of acquiring language and visual knowledge limit the relevance and richness of such knowledge, complicating the generalization to the recognition of unseen classes. To address this issue, this paper proposes a novel method based on generative external knowledge for ZSAR. The method advances an effective multi-prototype prediction strategy for zero-shot action recognition, and significantly improves the ability to accurately match the correct class prototypes. This paper develops video and class processing pipelines, within which an autonomous CLIP encoder first captures modality-specific information, followed by an integrated Transformer that facilitates the learning of cross-modal representations. These pipelines generate distinct cross-modal representations for both videos and classes. For predictions, a multi-prototype method is proposed to classify a video sample into the class corresponding to the most likely prototype. This method uses multiple prototypes per class based on the number of class images. Experiments conducted on three datasets demonstrate substantial improvements over existing ZSAR techniques, verifying the critical roles of generative external knowledge, sophisticated cross-modal fusion, and the multi-prototype strategy.",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S0957417425010425"
+    },
+    {
+      "arxiv_id": "2506.03144",
+      "paper_id": "2506.03144",
+      "title": "MERIT: Multilingual Semantic Retrieval with Interleaved Multi-Condition Query",
+      "authors": ["Wei Chow", "Yuan Gao", "Linfeng Li", "Xian Wang", "Qi Xu", "Hang Song", "Lingdong Kong", "Ran Zhou", "Yi Zeng", "Yidong Cai", "Botian Jiang", "Shilin Xu", "Jiajun Zhang", "Minghui Qiu", "Xiangtai Li", "Tianshu Yang", "Siliang Tang", "Juncheng Li"],
+      "published": "2025-06-03",
+      "year": 2025,
+      "venue": "NeurIPS 2025",
+      "summary": "Semantic retrieval is crucial for modern applications yet remains underexplored in current research. Existing datasets are limited to single languages, single images, or singular retrieval conditions, often failing to fully exploit the expressive capacity of visual information as evidenced by maintained performance when images are replaced with captions. However, practical retrieval scenarios frequently involve interleaved multi-condition queries with multiple images. Hence, this paper introduces MERIT, the first multilingual dataset for interleaved multi-condition semantic retrieval, comprising 320,000 queries with 135,000 products in 5 languages, covering 7 distinct product categories. Extensive experiments on MERIT identify existing models's limitation: focusing solely on global semantic information while neglecting specific conditional elements in queries. Consequently, we propose Coral, a novel fine-tuning framework that adapts pre-trained MLLMs by integrating embedding reconstruction to preserve fine-grained conditional elements and contrastive learning to extract comprehensive global semantics. Experiments demonstrate that Coral achieves a 45.9% performance improvement over conventional approaches on MERIT, with strong generalization capabilities validated across 8 established retrieval benchmarks. Collectively, our contributions - a novel dataset, identification of critical limitations in existing approaches, and an innovative fine-tuning framework - establish a foundation for future research in interleaved multi-condition semantic retrieval.",
+      "abs_url": "https://arxiv.org/abs/2506.03144",
+      "source_url": "https://merit-2025.github.io/"
+    },
+    {
+      "paper_id": "10.1016/j.neunet.2024.106200",
+      "title": "Hierarchical Matching and Reasoning for Multi-query Image Retrieval",
+      "authors": ["Zhong Ji", "Zhihao Li", "Yan Zhang", "Haoran Wang", "Yanwei Pang", "Xuelong Li"],
+      "published": "2024-05-01",
+      "year": 2024,
+      "venue": "Neural Networks",
+      "summary": "As a promising field, Multi-Query Image Retrieval (MQIR) aims at searching for the semantically relevant image given multiple region-specific text queries. Existing works mainly focus on a single-level similarity between image regions and text queries, which neglect the hierarchical guidance of multi-level similarities and result in incomplete alignments. Besides, the high-level semantic correlations that intrinsically connect different region-query pairs are rarely considered. To address above limitations, we propose a novel Hierarchical Matching and Reasoning Network (HMRN) for MQIR. It disentangles MQIR into three hierarchical semantic representations, which is responsible to capture fine-grained local details, contextual global scopes, and high-level inherent correlations. HMRN comprises two modules: Scalar-based Matching module and Vector-based Reasoning module. The Scalar-based Matching module characterizes the multi-level alignment similarity, while the Vector-based Reasoning module excavates potential semantic correlations among multiple region-query pairs. Finally, these three-level similarities are aggregated into a joint similarity space to form the ultimate similarity. Extensive experiments on benchmark datasets demonstrate that HMRN substantially surpasses the current state-of-the-art methods.",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S0893608024001242"
+    },
+    {
+      "arxiv_id": "2307.03073",
+      "paper_id": "2307.03073",
+      "title": "Proto-CLIP: Vision-Language Prototypical Network for Few-Shot Learning",
+      "authors": ["Jishnu Jaykumar P", "Kamalesh Palanisamy", "Yu-Wei Chao", "Xinya Du", "Yu Xiang"],
+      "published": "2024-10-14",
+      "year": 2024,
+      "venue": "IROS 2024",
+      "summary": "We propose a novel framework for few-shot learning by leveraging large-scale vision-language models such as CLIP. Motivated by unimodal prototypical networks for few-shot learning, we introduce Proto-CLIP which utilizes image prototypes and text prototypes for few-shot learning. Specifically, Proto-CLIP adapts the image and text encoder embeddings from CLIP in a joint fashion using few-shot examples. The embeddings from the two encoders are used to compute the respective prototypes of image classes for classification. During adaptation, we propose aligning the image and text prototypes of the corresponding classes. Such alignment is beneficial for few-shot classification due to the reinforced contributions from both types of prototypes. Proto-CLIP has both training-free and fine-tuned variants. We demonstrate the effectiveness of our method by conducting experiments on benchmark datasets for few-shot learning, as well as in the real world for robot perception.",
+      "abs_url": "https://arxiv.org/abs/2307.03073",
+      "source_url": "https://research.nvidia.com/publication/2024-10_proto-clip-vision-language-prototypical-network-few-shot-learning"
+    },
+    {
+      "paper_id": "10.3390/s24113624",
+      "title": "Proto-Adapter: Efficient Training-Free CLIP-Adapter for Few-Shot Image Classification",
+      "authors": ["Naoki Kato", "Yoshiki Nota", "Yoshimitsu Aoki"],
+      "published": "2024-06-04",
+      "year": 2024,
+      "venue": "Sensors",
+      "summary": "Large vision-language models, such as Contrastive Vision-Language Pre-training (CLIP), pre-trained on large-scale image-text datasets, have demonstrated robust zero-shot transfer capabilities across various downstream tasks. To further enhance the few-shot recognition performance of CLIP, Tip-Adapter augments the CLIP model with an adapter that incorporates a key-value cache model constructed from the few-shot training set. This approach enables training-free adaptation and has shown significant improvements in few-shot recognition, especially with additional fine-tuning. However, the size of the adapter increases in proportion to the number of training samples, making it difficult to deploy in practical applications. In this paper, we propose a novel CLIP adaptation method, named Proto-Adapter, which employs a single-layer adapter of constant size regardless of the amount of training data and even outperforms Tip-Adapter. Proto-Adapter constructs the adapter's weights based on prototype representations for each class. By aggregating the features of the training samples, it successfully reduces the size of the adapter without compromising performance. Moreover, the performance of the model can be further enhanced by fine-tuning the adapter's weights using a distance margin penalty, which imposes additional inter-class discrepancy to the output logits.",
+      "source_url": "https://www.mdpi.com/1424-8220/24/11/3624"
+    },
+    {
+      "arxiv_id": "2404.17606",
+      "paper_id": "2404.17606",
+      "title": "SetCSE: Set Operations using Contrastive Learning of Sentence Embeddings",
+      "authors": ["Kang Liu"],
+      "published": "2024-04-25",
+      "year": 2024,
+      "venue": "ICLR 2024",
+      "summary": "Taking inspiration from Set Theory, we introduce SetCSE, an innovative information retrieval framework. SetCSE employs sets to represent complex semantics and incorporates well-defined operations for structured information querying under the provided context. Within this framework, we introduce an inter-set contrastive learning objective to enhance comprehension of sentence embedding models concerning the given semantics. Furthermore, we present a suite of operations, including SetCSE intersection, difference, and operation series, that leverage sentence embeddings of the enhanced model for complex sentence retrieval tasks. Throughout this paper, we demonstrate that SetCSE adheres to the conventions of human language expressions regarding compounded semantics, provides a significant enhancement in the discriminatory capability of underlying sentence embedding models, and enables numerous information retrieval tasks involving convoluted and intricate prompts which cannot be achieved using existing querying methods.",
+      "abs_url": "https://arxiv.org/abs/2404.17606",
+      "source_url": "https://openreview.net/forum?id=zEHGSN8Hy8"
+    },
+    {
+      "paper_id": "10.1016/j.autcon.2024.105542",
+      "title": "Recognizing Temporary Construction Site Objects using CLIP-based Few-shot Learning and Multi-modal Prototypes",
+      "authors": ["Yuanchang Liang", "Prahlad Vadakkepat", "David Kim Huat Chua", "Shuyi Wang", "Zhigang Li", "Shuxiang Zhang"],
+      "published": "2024-09-01",
+      "year": 2024,
+      "venue": "Automation in Construction",
+      "summary": "Visual understanding of temporary on-site objects is essential for robots and project management in construction. Implementation of deep learning algorithms is challenging on construction sites due to high data annotation cost, demanding computational power, and lack of large-scale training datasets. Recognizing on-site temporary objects demands the algorithms to learn in a data-efficient way. This paper developed a training-free CLIP-based few-shot object classification algorithm with multi-modal prototypes, introduced an ImageNet-based Similarity Cache with image-text similarity features, and achieved state-of-the-art performance on the public dataset SODA and the proposed dataset TOCS.",
+      "source_url": "https://www.sciencedirect.com/science/article/abs/pii/S0926580524002784"
+    }
+  ]
+}

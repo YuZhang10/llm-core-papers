@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>World Models 世界模型研究脉络 2024-2026</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18212f;
+      --muted: #5c6877;
+      --soft: #f6f2eb;
+      --paper: #fffdf8;
+      --line: #d9d5cc;
+      --blue: #2563eb;
+      --teal: #0f766e;
+      --green: #3f7d20;
+      --red: #b42318;
+      --violet: #6d28d9;
+      --gold: #a16207;
+      --shadow: 0 14px 32px rgba(24, 33, 47, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      line-height: 1.62;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(37, 99, 235, 0.05), rgba(15, 118, 110, 0.04) 38%, rgba(161, 98, 7, 0.05)),
+        var(--paper);
+    }
+
+    a {
+      color: #174ea6;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(23, 78, 166, 0.28);
+    }
+
+    a:hover {
+      border-bottom-color: currentColor;
+    }
+
+    .page {
+      width: min(1180px, calc(100vw - 40px));
+      margin: 0 auto;
+      padding: 28px 0 64px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(300px, 0.65fr);
+      gap: 24px;
+      align-items: stretch;
+      padding: 24px 0 16px;
+    }
+
+    .title-block {
+      padding: 28px 30px;
+      border: 1px solid var(--line);
+      background: rgba(255, 253, 248, 0.82);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .snapshot {
+      display: grid;
+      gap: 10px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: #f9faf7;
+      box-shadow: var(--shadow);
+    }
+
+    .snapshot div {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 12px;
+      align-items: baseline;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #e7e1d6;
+    }
+
+    .snapshot div:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .snapshot strong {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .snapshot span {
+      font-weight: 650;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0 26px;
+    }
+
+    nav a {
+      padding: 7px 11px;
+      border: 1px solid #d8dee8;
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    section {
+      margin-top: 30px;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    .lead {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .panel {
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .panel h2,
+    .panel h3 {
+      margin-bottom: 10px;
+    }
+
+    .thesis {
+      border-left: 5px solid var(--teal);
+      background: #f4fbf8;
+    }
+
+    .warning {
+      border-left: 5px solid var(--red);
+      background: #fff8f5;
+    }
+
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .track {
+      position: relative;
+      min-height: 186px;
+      padding: 18px 16px 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.78);
+      overflow: hidden;
+    }
+
+    .track::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 5px;
+      background: var(--accent);
+    }
+
+    .track .tag {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 3px 8px;
+      background: color-mix(in srgb, var(--accent) 12%, white);
+      color: color-mix(in srgb, var(--accent) 78%, #111);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .track p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .track ul,
+    .paper-card ul,
+    .reading-list {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .track li,
+    .paper-card li,
+    .reading-list li {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .map {
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.78);
+      overflow-x: auto;
+    }
+
+    .map-grid {
+      min-width: 900px;
+      display: grid;
+      grid-template-columns: 146px repeat(5, minmax(140px, 1fr));
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .map-cell {
+      min-height: 78px;
+      padding: 10px;
+      border: 1px solid #ded8cd;
+      background: #fffefa;
+      font-size: 13px;
+    }
+
+    .map-cell.year {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #edf3ff;
+      color: #163f82;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .map-cell.head {
+      min-height: auto;
+      background: #f2f4f7;
+      color: #344054;
+      font-weight: 750;
+    }
+
+    .badge {
+      display: inline-block;
+      margin: 2px 4px 4px 0;
+      padding: 3px 7px;
+      border: 1px solid #d0d7e2;
+      background: #fff;
+      color: #263444;
+      font-size: 12px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .flow-step {
+      position: relative;
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .flow-step:not(:last-child)::after {
+      content: ">";
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8a94a6;
+      font-weight: 800;
+    }
+
+    .flow-step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--blue);
+    }
+
+    .flow-step span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    th,
+    td {
+      padding: 12px 13px;
+      border-bottom: 1px solid #e7e1d6;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    th {
+      background: #f1f5f9;
+      color: #344054;
+      font-size: 13px;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .paper-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .paper-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .paper-card .meta {
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .paper-card p {
+      color: #394454;
+      font-size: 14px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-list {
+      columns: 2;
+      column-gap: 28px;
+      padding-left: 18px;
+    }
+
+    .source-list li {
+      break-inside: avoid;
+      margin: 0 0 7px;
+      font-size: 13px;
+    }
+
+    .callout {
+      padding: 18px 20px;
+      border: 1px solid #c7d7ea;
+      background: #f4f8ff;
+    }
+
+    @media (max-width: 920px) {
+      header,
+      .lead,
+      .paper-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .track-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-step:not(:last-child)::after {
+        display: none;
+      }
+
+      .source-list {
+        columns: 1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .title-block {
+        padding: 22px 18px;
+      }
+
+      .track-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .snapshot div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="title-block">
+        <p class="eyebrow">Research Map / 2024-2026</p>
+        <h1>世界模型研究脉络</h1>
+        <p class="subtitle">
+          这份笔记先不按引用量过滤，而是按研究问题和技术路线梳理：世界模型如何从 model-based RL 的 latent dynamics，
+          演化为可交互的视频、3D、机器人和自动驾驶模拟器，并开始成为 LLM Agent 的“可想象环境层”。
+        </p>
+      </div>
+      <aside class="snapshot" aria-label="summary">
+        <div><strong>核心变化</strong><span>从预测下一帧，变成预测行动后果</span></div>
+        <div><strong>关键接口</strong><span>state + action -> next state / reward / memory</span></div>
+        <div><strong>主要落点</strong><span>机器人、自动驾驶、游戏环境、Agent 规划</span></div>
+        <div><strong>评价焦点</strong><span>闭环任务成功率，而不是视频好不好看</span></div>
+      </aside>
+    </header>
+
+    <nav>
+      <a href="#why-now">为什么现在热</a>
+      <a href="#tracks">六条主线</a>
+      <a href="#timeline">时间线</a>
+      <a href="#agent">接到 LLM Agent</a>
+      <a href="#papers">关键论文</a>
+      <a href="#reading">阅读顺序</a>
+      <a href="#sources">资料链接</a>
+    </nav>
+
+    <section id="why-now" class="lead">
+      <article class="panel thesis">
+        <h2>一句话主线</h2>
+        <p>
+          最近两年的世界模型，不再只是“环境动力学模型”，而是在向一种通用基础设施变化：
+          它能把视频、语言、动作、3D 空间和记忆压进同一个可推演的状态空间，让 agent 在真实行动前先做内部实验。
+        </p>
+        <p>
+          所以这个领域最重要的提问已经从“模型能不能生成逼真的未来画面”，转向“模型能不能被行动控制、保持长期一致、
+          支持反事实推演，并真的提高下游任务成功率”。
+        </p>
+      </article>
+      <article class="panel warning">
+        <h2>一个容易踩的坑</h2>
+        <p>
+          world model 这个词现在被用得很宽：Sora/Genie/Cosmos 这类大视频模型会被叫作 world model；
+          Dreamer/TD-MPC/JEPA 这类 latent dynamics 也会被叫作 world model；自动驾驶里的可控仿真器同样会被叫作 world model。
+        </p>
+        <p>
+          阅读时不要先纠结定义。更有用的切分方式是看它服务哪个功能：预测、规划、训练、评估、数据生成，还是长期记忆。
+        </p>
+      </article>
+    </section>
+
+    <section id="tracks">
+      <h2>六条研究主线</h2>
+      <div class="track-grid">
+        <article class="track" style="--accent: var(--blue)">
+          <span class="tag">Video / Interactive</span>
+          <h3>视频生成走向可交互模拟</h3>
+          <p>Sora 把视频模型包装成 world simulator，Genie 系列进一步强调 action-controllable 和 real-time interactive worlds。</p>
+          <ul>
+            <li>Sora: 视觉数据统一成视频生成任务</li>
+            <li>Genie: 从无标注视频学习可玩的环境</li>
+            <li>Pandora: 用自然语言动作控制视频状态转移</li>
+          </ul>
+        </article>
+
+        <article class="track" style="--accent: var(--teal)">
+          <span class="tag">Latent / JEPA</span>
+          <h3>从像素转向可预测表征</h3>
+          <p>这条线认为世界理解不一定需要像素级重建，关键是学到能预测、能规划、能泛化的 latent state。</p>
+          <ul>
+            <li>TD-MPC2: decoder-free latent model-based control</li>
+            <li>V-JEPA / V-JEPA 2: 视频表征预测和物理推理</li>
+            <li>LeWorldModel: 端到端 JEPA world model</li>
+          </ul>
+        </article>
+
+        <article class="track" style="--accent: var(--green)">
+          <span class="tag">Robotics</span>
+          <h3>机器人把它当训练场</h3>
+          <p>机器人需要低成本试错。世界模型可以作为 learned simulator、policy evaluator、data engine 和 action planner。</p>
+          <ul>
+            <li>UniSim: 学真实世界交互模拟器</li>
+            <li>Cosmos: 面向 Physical AI 的平台化 WFM</li>
+            <li>Ctrl-World / H-WM: 面向 manipulation 和长程任务</li>
+          </ul>
+        </article>
+
+        <article class="track" style="--accent: var(--gold)">
+          <span class="tag">Autonomous Driving</span>
+          <h3>自动驾驶是最现实落点</h3>
+          <p>道路长尾场景稀缺且危险，world model 可以合成可控 edge cases，并服务预测、规划和闭环仿真。</p>
+          <ul>
+            <li>Drive-WM: 多视角视觉预测和规划</li>
+            <li>OccWorld: 在 3D occupancy 空间建模演化</li>
+            <li>Waymo World Model: 官方产品化信号</li>
+          </ul>
+        </article>
+
+        <article class="track" style="--accent: var(--violet)">
+          <span class="tag">LLM Agent</span>
+          <h3>语言 Agent 需要可模拟环境</h3>
+          <p>ReAct/ToT/Voyager 主要解决推理和行动编排；world model 补上“行动会怎样改变世界”的反事实推演层。</p>
+          <ul>
+            <li>WorldGPT: MLLM 做跨模态状态转移</li>
+            <li>Language Agents Meet Causality: LLM + causal WM</li>
+            <li>Tree/option planning: 用 WM 做 MCTS/MPC</li>
+          </ul>
+        </article>
+
+        <article class="track" style="--accent: var(--red)">
+          <span class="tag">Evaluation</span>
+          <h3>评测转向闭环成功率</h3>
+          <p>现在的共识是视频真实感不等于世界理解，评测要看行动可控性、物理一致性、长期记忆和任务成功。</p>
+          <ul>
+            <li>PhyGenBench / WorldModelBench: 物理和指令一致性</li>
+            <li>World-in-World: closed-loop task success</li>
+            <li>WorldArena: perception + functionality</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <h2>2024-2026 时间线地图</h2>
+      <div class="map">
+        <div class="map-grid" role="table" aria-label="world model timeline">
+          <div class="map-cell head">时期</div>
+          <div class="map-cell head">视频/交互世界</div>
+          <div class="map-cell head">Latent / JEPA / RL</div>
+          <div class="map-cell head">机器人</div>
+          <div class="map-cell head">自动驾驶</div>
+          <div class="map-cell head">评测和综述</div>
+
+          <div class="map-cell year">2024 H1</div>
+          <div class="map-cell">
+            <span class="badge">Sora</span>
+            <span class="badge">Genie</span>
+            <span class="badge">LWM</span>
+            大视频模型开始被正式叙述为 world simulator。
+          </div>
+          <div class="map-cell">
+            <span class="badge">V-JEPA</span>
+            从视频自监督表征预测切入，不走像素重建路线。
+          </div>
+          <div class="map-cell">
+            <span class="badge">UniSim</span>
+            把“生成式真实世界交互模拟器”推成具身学习主线。
+          </div>
+          <div class="map-cell">
+            <span class="badge">Drive-WM</span>
+            多视角视觉预测开始服务规划。
+          </div>
+          <div class="map-cell">
+            定义仍然混乱，但“动作可控”和“长期一致”开始成为关键词。
+          </div>
+
+          <div class="map-cell year">2024 H2</div>
+          <div class="map-cell">
+            <span class="badge">Pandora</span>
+            <span class="badge">WorldGPT</span>
+            LLM/MLLM 被接进状态转移和跨模态生成。
+          </div>
+          <div class="map-cell">
+            <span class="badge">PLSM</span>
+            关注 action effect 是否系统化、可泛化。
+          </div>
+          <div class="map-cell">
+            视频生成和机器人 policy 的接口开始变重要。
+          </div>
+          <div class="map-cell">
+            <span class="badge">OccWorld</span>
+            从 2D 视频推进到 3D occupancy token。
+          </div>
+          <div class="map-cell">
+            <span class="badge">PhyGenBench</span>
+            物理常识评测成为视频模型的短板检查器。
+          </div>
+
+          <div class="map-cell year">2025</div>
+          <div class="map-cell">
+            <span class="badge">Genie 3</span>
+            <span class="badge">Marble</span>
+            从生成视频走向实时探索、3D 持久世界。
+          </div>
+          <div class="map-cell">
+            <span class="badge">V-JEPA 2</span>
+            进一步强调 physical reasoning 和 robot planning。
+          </div>
+          <div class="map-cell">
+            <span class="badge">Cosmos</span>
+            WFM 平台化，用于 synthetic data 和 physical AI。
+          </div>
+          <div class="map-cell">
+            <span class="badge">DriveDreamer4D</span>
+            <span class="badge">Cosmos-Drive</span>
+            数据机器和多视角一致性成为重点。
+          </div>
+          <div class="map-cell">
+            <span class="badge">WorldModelBench</span>
+            <span class="badge">World-in-World</span>
+            开始明确反对只看视觉质量。
+          </div>
+
+          <div class="map-cell year">2026 Q1-Q2</div>
+          <div class="map-cell">
+            <span class="badge">Terra</span>
+            <span class="badge">4DWorldBench</span>
+            原生 3D/4D 表征和评估升温。
+          </div>
+          <div class="map-cell">
+            <span class="badge">LeWorldModel</span>
+            JEPA world model 追求更稳定、更简化的端到端训练。
+          </div>
+          <div class="map-cell">
+            <span class="badge">Ctrl-World</span>
+            <span class="badge">H-WM</span>
+            <span class="badge">Robot WM Survey</span>
+            从视频 rollout 转向 policy-in-the-loop。
+          </div>
+          <div class="map-cell">
+            <span class="badge">Waymo World Model</span>
+            行业侧明确把生成式世界模型用于 AV 仿真。
+          </div>
+          <div class="map-cell">
+            <span class="badge">WorldArena</span>
+            评测开始统一 perception quality 和 functional utility。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="agent">
+      <h2>怎么接到 LLM Agent / Memory Layer</h2>
+      <div class="flow" aria-label="agent world model pipeline">
+        <div class="flow-step">
+          <strong>Memory</strong>
+          <span>保存历史状态、对象、约束、交互经验。</span>
+        </div>
+        <div class="flow-step">
+          <strong>World Model</strong>
+          <span>预测 action 之后状态如何变化，以及可能的 reward/risk。</span>
+        </div>
+        <div class="flow-step">
+          <strong>Planner</strong>
+          <span>在想象 rollout 里比较候选计划，例如 MCTS、MPC、Tree of Thoughts。</span>
+        </div>
+        <div class="flow-step">
+          <strong>Actor</strong>
+          <span>执行一个动作或 option，而不是把整条计划一次性押上去。</span>
+        </div>
+        <div class="flow-step">
+          <strong>Verifier</strong>
+          <span>用真实反馈校正记忆和世界模型，形成闭环。</span>
+        </div>
+      </div>
+      <div class="callout" style="margin-top: 14px;">
+        <p>
+          如果把 ReAct 看作“边想边做”，ToT 看作“搜索思路树”，Voyager 看作“技能库 + 自我课程”，那么 world model 可以理解为下一层：
+          它不只让 agent 写出计划，而是让 agent 在可学习的环境模型里先试运行计划。这对长程任务、具身任务、多 agent 协作尤其关键。
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>关键问题对照表</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>研究问题</th>
+            <th>为什么重要</th>
+            <th>代表路线</th>
+            <th>观察指标</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>表示什么状态？</td>
+            <td>像素很直观但不稳定，latent/3D/occupancy 更适合规划。</td>
+            <td>V-JEPA、OccWorld、Terra、LeWorldModel</td>
+            <td>长期一致性、3D 一致性、状态抽象是否保留因果变量</td>
+          </tr>
+          <tr>
+            <td>如何接收动作？</td>
+            <td>没有 action conditioning，模型只能“续写视频”，不能做反事实规划。</td>
+            <td>Genie、Pandora、UniSim、Ctrl-World</td>
+            <td>action following、controllability、policy-in-the-loop 成功率</td>
+          </tr>
+          <tr>
+            <td>能否长程保持一致？</td>
+            <td>agent 任务往往跨几十到几百步，误差会积累。</td>
+            <td>Genie 3、World-in-World、H-WM、memory-augmented WM</td>
+            <td>对象持久性、回访一致性、长程 rollout 退化速度</td>
+          </tr>
+          <tr>
+            <td>是否真的帮到任务？</td>
+            <td>高 FVD 或漂亮视频不一定提升机器人或自动驾驶。</td>
+            <td>WorldArena、World-in-World、WorldEval</td>
+            <td>task success、policy ranking correlation、data engine gain</td>
+          </tr>
+          <tr>
+            <td>能否从经验中修正？</td>
+            <td>真实世界会打脸，世界模型必须能被观测反馈校准。</td>
+            <td>DECKARD、causal world model、model-based RL</td>
+            <td>sample efficiency、OOD generalization、causal intervention accuracy</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="papers">
+      <h2>关键论文和资料卡片</h2>
+      <div class="paper-grid">
+        <article class="paper-card">
+          <div class="meta">通用视频/交互世界</div>
+          <h3><a href="https://openai.com/research/video-generation-models-as-world-simulators">Video Generation Models as World Simulators</a></h3>
+          <p>Sora 的技术报告，重要性不在细节公开多少，而在它把“大规模视频生成 = 世界模拟器”的叙事推到了主流。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">通用视频/交互世界</div>
+          <h3><a href="https://arxiv.org/abs/2402.15391">Genie: Generative Interactive Environments</a></h3>
+          <p>从无标注互联网视频学习可交互环境，是“生成世界 + action control”的关键节点。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">通用视频/交互世界</div>
+          <h3><a href="https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/">Genie 3</a></h3>
+          <p>官方强调实时交互、720p、世界一致性和 promptable world events，代表 2025 之后的产品级方向。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">语言动作 + 视频状态</div>
+          <h3><a href="https://arxiv.org/abs/2406.09455">Pandora</a></h3>
+          <p>用自然语言动作控制视频世界状态转移，适合作为 LLM agent 连接 world model 的入口论文。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">Latent / JEPA</div>
+          <h3><a href="https://arxiv.org/abs/2404.08471">V-JEPA</a> / <a href="https://ai.meta.com/research/publications/v-jepa-2-self-supervised-video-models-enable-understanding-prediction-and-planning/">V-JEPA 2</a></h3>
+          <p>不执着像素重建，而是预测 embedding；V-JEPA 2 进一步连接 physical reasoning 和 robot planning。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">Model-based RL</div>
+          <h3><a href="https://arxiv.org/abs/2310.16828">TD-MPC2</a></h3>
+          <p>虽然早于这波视频热潮，但它代表世界模型在连续控制里的务实路线：learned implicit world model + latent planning。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">机器人</div>
+          <h3><a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/c4d66eae503694424123b93ac0fbaf17-Abstract-Conference.html">UniSim</a></h3>
+          <p>把多源数据组织为 action-in / video-out 的真实世界交互模拟器，并展示纯模拟训练到真实机器人迁移的可能性。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">机器人平台</div>
+          <h3><a href="https://arxiv.org/abs/2501.03575">Cosmos World Foundation Model Platform</a></h3>
+          <p>NVIDIA 把 WFM 平台化，重点服务 physical AI 的合成数据、后训练和仿真。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">自动驾驶</div>
+          <h3><a href="https://cvpr.thecvf.com/virtual/2024/poster/31475">Drive-WM</a> / <a href="https://eccv.ecva.net/virtual/2024/poster/2474">OccWorld</a></h3>
+          <p>一个从多视角视觉预测接规划，一个从 3D occupancy 空间建模驾驶场景演化，是 AV world model 的两种典型表征。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">自动驾驶产业信号</div>
+          <h3><a href="https://waymo.com/blog/2026/02/the-waymo-world-model-a-new-frontier-for-autonomous-driving-simulation">Waymo World Model</a></h3>
+          <p>说明生成式 world model 正从论文走向安全关键系统的仿真和长尾场景生成。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">LLM Agent</div>
+          <h3><a href="https://arxiv.org/abs/2404.18202">WorldGPT</a> / <a href="https://arxiv.org/abs/2410.19923">Language Agents Meet Causality</a></h3>
+          <p>前者把 MLLM 组织成跨模态状态转移模型，后者把 LLM agent 和 causal world model 接起来。</p>
+        </article>
+        <article class="paper-card">
+          <div class="meta">评测</div>
+          <h3><a href="https://arxiv.org/abs/2510.18135">World-in-World</a> / <a href="https://arxiv.org/abs/2602.08971">WorldArena</a></h3>
+          <p>它们把评测重心从 open-loop 视频质量转向 closed-loop 任务成功、policy evaluation 和 data engine utility。</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="reading">
+      <h2>建议阅读顺序</h2>
+      <ol class="reading-list">
+        <li><strong>先建立地图：</strong><a href="https://arxiv.org/abs/2510.20668">From Masks to Worlds</a> + <a href="https://arxiv.org/abs/2605.00080">World Model for Robot Learning</a>。</li>
+        <li><strong>看通用世界模拟：</strong>Sora 技术报告 -> Genie -> Pandora -> Genie 3。</li>
+        <li><strong>看具身落地：</strong>UniSim -> Cosmos -> Ctrl-World / H-WM。</li>
+        <li><strong>看自动驾驶：</strong>Drive-WM -> OccWorld -> DriveDreamer4D -> Waymo World Model。</li>
+        <li><strong>最后看评测：</strong>WorldModelBench -> World-in-World -> WorldArena。这样能避免被“视频很漂亮”带偏。</li>
+      </ol>
+      <p class="note">
+        当前版本没有按引用量筛选，适合先搭研究雷达。等你决定主攻机器人、自动驾驶、还是 LLM Agent，我再把这一页拆成可精读的论文清单。
+      </p>
+    </section>
+
+    <section id="sources">
+      <h2>资料链接</h2>
+      <ul class="source-list">
+        <li><a href="https://openai.com/research/video-generation-models-as-world-simulators">OpenAI Sora: Video generation models as world simulators</a></li>
+        <li><a href="https://arxiv.org/abs/2402.15391">Genie: Generative Interactive Environments</a></li>
+        <li><a href="https://deepmind.google/en/blog/genie-2-a-large-scale-foundation-world-model/">Google DeepMind Genie 2</a></li>
+        <li><a href="https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/">Google DeepMind Genie 3</a></li>
+        <li><a href="https://arxiv.org/abs/2402.08268">Large World Model on Million-Length Video and Language</a></li>
+        <li><a href="https://arxiv.org/abs/2406.09455">Pandora</a></li>
+        <li><a href="https://arxiv.org/abs/2404.18202">WorldGPT</a></li>
+        <li><a href="https://arxiv.org/abs/2410.19923">Language Agents Meet Causality</a></li>
+        <li><a href="https://arxiv.org/abs/2404.08471">V-JEPA</a></li>
+        <li><a href="https://ai.meta.com/research/publications/v-jepa-2-self-supervised-video-models-enable-understanding-prediction-and-planning/">V-JEPA 2</a></li>
+        <li><a href="https://arxiv.org/abs/2310.16828">TD-MPC2</a></li>
+        <li><a href="https://proceedings.neurips.cc/paper_files/paper/2024/hash/43ba0466af2b1ac76aa85d8fbec714e3-Abstract-Conference.html">Softly State-Invariant World Models</a></li>
+        <li><a href="https://proceedings.iclr.cc/paper_files/paper/2024/hash/c4d66eae503694424123b93ac0fbaf17-Abstract-Conference.html">UniSim</a></li>
+        <li><a href="https://arxiv.org/abs/2501.03575">NVIDIA Cosmos WFM Platform</a></li>
+        <li><a href="https://arxiv.org/abs/2511.00062">Cosmos-Predict2.5 / World Simulation with Video Foundation Models</a></li>
+        <li><a href="https://cvpr.thecvf.com/virtual/2024/poster/31475">Drive-WM</a></li>
+        <li><a href="https://eccv.ecva.net/virtual/2024/poster/2474">OccWorld</a></li>
+        <li><a href="https://arxiv.org/abs/2501.11260">A Survey of World Models for Autonomous Driving</a></li>
+        <li><a href="https://waymo.com/blog/2026/02/the-waymo-world-model-a-new-frontier-for-autonomous-driving-simulation">Waymo World Model</a></li>
+        <li><a href="https://www.worldlabs.ai/blog/marble-world-model">World Labs Marble</a></li>
+        <li><a href="https://arxiv.org/abs/2510.14977">Terra</a></li>
+        <li><a href="https://arxiv.org/abs/2502.20694">WorldModelBench</a></li>
+        <li><a href="https://arxiv.org/abs/2510.18135">World-in-World</a></li>
+        <li><a href="https://arxiv.org/abs/2602.08971">WorldArena</a></li>
+        <li><a href="https://arxiv.org/abs/2510.20668">From Masks to Worlds</a></li>
+        <li><a href="https://arxiv.org/abs/2605.00080">World Model for Robot Learning</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
