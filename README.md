@@ -27,7 +27,7 @@
 ```text
 notes/
   Diffusion/
-    DDPM -> ViT -> DiT
+    DDPM -> ViT -> DiT -> LLaDA -> LLaDA2.0
 
   LLM-Agent-Memory-Layer/
     ReAct / Reflexion / ToT / Voyager / Generative Agents / AutoGen / MetaGPT ...

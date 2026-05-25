@@ -196,6 +196,38 @@ QA 任务覆盖 9 个数据集：MS MARCO v1、Natural Questions、DuReader、Tr
 | 是否端到端训练 | 通常否 | 通常否 | 是，至少论文目标如此 |
 | 更像什么 | 搜索引擎 + prompt 拼接 | 记忆数据库/操作系统 | 神经化 RAG / KV memory reader |
 
+#### 一个容易误解的点：MSA 仍然很像 RAG
+
+读 MSA 时最容易产生的困惑是：它是不是“只是把 RAG 的 embedding 向量换成了 LLM 自己的 query 向量”？这个直觉并不离谱。MSA 确实仍然有外部 memory bank，仍然做 Top-k selection，仍然是“先找相关东西，再让模型生成”。所以它不是把知识永久写进模型参数，也不是 Titans 那种测试时更新神经记忆权重。
+
+但 MSA 和普通 RAG 的差别在于：它把“检索文本 + 拼进 prompt”改造成了“检索 latent KV + 接进 attention”。
+
+```text
+普通 RAG:
+外部 embedding / BM25 / reranker
+  -> 找到相关文本 chunk
+  -> 把原文拼进 prompt
+  -> LLM 重新读这些文字并生成
+
+MSA:
+LLM/同源 encoder 先把文档编码成 compressed K/V + routing key
+当前 query 的 hidden state 产生 routing query
+  -> 选中相关 latent memory
+  -> 把 selected compressed K/V 接入 sparse attention
+  -> LLM 在 attention 层直接读取这些 memory 并生成
+```
+
+一个具体例子：如果 memory 里有一篇 MSA 笔记，用户问“MSA 为什么不完全等于 RAG？”普通 RAG 会先找出几段包含“RAG”“KV memory”“sparse attention”的原文，再塞给模型读。MSA 则会先把这篇笔记离线编码成 compressed `K/V` 和 routing key；提问时，模型从当前 hidden state 产生 routing query，选中相关 memory，然后让生成 token 直接 attend 到这些 compressed `K/V`。
+
+所以，MSA 的“模型侧”不在于 memory 完全不外置，而在于读取路径更靠近模型内部：检索信号来自模型 hidden state，读取对象是 attention 可用的 latent `K/V`，最终接入点也是 attention layer。可以把它理解成：
+
+```text
+RAG = 外部检索器把相关资料拿给模型看
+MSA = 模型用自己的 hidden state 选择 latent memory，并在 attention 里读
+```
+
+因此更准确的定位不是“MSA 不是 RAG”，而是：**MSA 是把 RAG 神经化、attention 化的一步**。
+
 所以 MSA 不会自动替代 Memory OS。它更像一个未来可以接在 Memory OS 后面的“模型内读取器”：
 
 ```text
@@ -247,6 +279,7 @@ MSA 主要推进的是第二层和第三层之间的边界：它想让“读取�
 
 - MSA 的核心不是“存储记忆”，而是“模型如何读取极大规模记忆”。
 - RAG 检索文本相似度，MSA 检索模型内部 attention 可用的 latent KV memory。
+- MSA 仍然很像 RAG；关键变化是从“检索文本并拼 prompt”变成“检索 compressed KV 并接入 attention”。
 - MSA 不等于把知识写进参数；memory 仍然来自外部文档，只是被编码成模型内部表示。
 - Memory OS 仍然必要，因为它负责记忆的治理、更新、删除、权限和结构化。
 - EverMind 的产品主线是 EverOS 这种外置 Agent Memory Infra；MSA 是更模型侧的研究护城河。

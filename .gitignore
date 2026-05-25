@@ -12,7 +12,7 @@ notes/quick_summaries.md
 
 # Local copies of original papers and arXiv source bundles.
 # The public repo focuses on notes and selected figure assets.
-notes/*/*/*.pdf
+notes/**/*.pdf
 notes/*/pdfs/*.pdf
 notes/**/*.tar.gz
 notes/**/source/
