@@ -31,8 +31,15 @@
 | HuggingGPT | 2023 | 1,344, Semantic Scholar author/paper surface | 中-弱：tool execution state |
 | Language Models as Zero-Shot Planners | 2022 | 1,482, Semantic Scholar surface | 弱-中：environment/action grounding |
 
+## Memory 专项补充
+
+- [[Mem0 Building Production-Ready AI Agents with Scalable Long-Term Memory/note|Mem0]] - 2025，agent 长期记忆的系统层方案：从对话中抽取 compact facts，做 ADD / UPDATE / DELETE / NOOP 维护，并用 `Mem0^g` 补 graph memory；不属于上面“高引主清单”的筛选口径，但很适合补齐 production memory layer 这一块。
+- [[A-Mem Agentic Memory for LLM Agents/note|A-Mem]] - 2025，NeurIPS 2025，Zettelkasten 风格 agentic memory：把交互写成带 keywords / tags / context / links 的 atomic notes，并通过 link generation 和 memory evolution 让记忆网络持续自组织。
+- [[LongMem Augmenting Language Models with Long-Term Memory/note|LongMem]] - 2023，模型侧长期 KV memory，适合理解 latent memory / memory bank 路线。
+- [[Titans Learning to Memorize at Test Time/note|Titans]] - 2025，test-time neural memory，把长期记忆写进可在线更新的 memory module。
+- [[MSA Memory Sparse Attention for Efficient End-to-End Memory Model Scaling to 100M Tokens/note|MSA]] - 2025，end-to-end latent memory scaling，把 routing 和 memory sparse attention 直接放进模型架构。
+
 ## 未放入主清单但建议后续看
 
 - MemGPT: Towards LLMs as Operating Systems - memory layer 很核心，但我查到的公开引用快照没有稳定超过 1000；适合作为下一轮“memory 专项”加入。
 - A Survey on Large Language Model based Autonomous Agents - memory module 综述很有用，但检索到的 Mendeley 快照约 862，未进主清单。
-
